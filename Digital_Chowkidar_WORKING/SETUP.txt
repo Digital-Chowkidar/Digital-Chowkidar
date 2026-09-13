@@ -1,0 +1,40 @@
+DIGITAL CHOWKIDAR V1 - FREE SCREENSHOT STORAGE BUILD
+
+1. Cloudflare/GitHub
+- Put everything inside the repo's existing `file/` folder.
+- Keep wrangler.jsonc assets.directory = "./file" at repo root.
+- Commit/push. Cloudflare should deploy automatically.
+- This build bumps the service-worker cache to v4 so the new app code can load after deployment.
+
+2. Firebase Authentication
+- Email/Password must be enabled.
+- Authorized domain: add your Cloudflare workers.dev domain if Firebase asks.
+
+3. Firebase Firestore
+- Publish firestore.rules from this package in Firebase Console > Firestore Database > Rules.
+
+4. Cloudinary
+- Free Cloudinary account.
+- Upload preset: `digital_chowkidar_screenshots`
+- Signing mode: Unsigned
+- Cloud name configured in this build: `bobsswig` (taken from the provided dashboard screenshot).
+- The app compresses CCTV screenshots to JPEG before upload and stores the Cloudinary URL + metadata in Firestore.
+- No Firebase Storage is used by this build.
+
+5. Make the first admin (one-time)
+- Create/login the staff account normally through the app.
+- Firebase Console > Firestore Database > Data > users > open that user's document.
+- Change/add field: role = "admin" (string).
+- Refresh the app. An Admin button will appear.
+
+6. Admin workflow
+- Authentication > Users: copy a customer's User UID.
+- Admin > Create Alert: paste UID and send.
+- Admin > Create Incident: paste UID and record.
+- Admin > Upload CCTV Screenshot: paste UID, choose image, upload.
+- Customer sees live alerts/incidents/screenshots automatically.
+
+7. V1 scope
+- No 30-minute patrol tracking.
+- No AI/motion detection.
+- Alerts are staff-created.
