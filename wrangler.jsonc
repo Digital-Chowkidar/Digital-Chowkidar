@@ -1,8 +1,10 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "digital-chowkidar",
-  "compatibility_date": "2026-09-13",
+  "main": "worker.js",
+  "compatibility_date": "2026-09-15",
   "assets": {
-    "directory": "./Digital_Chowkidar_CLOUDFLARE_UPLOAD/file"
+    "directory": "./Digital_Chowkidar_CLOUDFLARE_UPLOAD/file",
+    "binding": "ASSETS"
   }
 }
